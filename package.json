@@ -1,5 +1,5 @@
 {
-  "name": "splash",
+  "name": "@famac/splash",
   "description": "The tiny loading screen for web artisans",
   "private": false,
   "version": "3.0.1",

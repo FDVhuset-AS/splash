@@ -1,31 +1,31 @@
 // @ts-strict
 
 import { version } from '../../../package.json'
-import '../../sass/ns.sass'
+import '../../sass/s.sass'
 
-import { NSFinder, GUIDString, Reference } from '../types/Types'
-import { cleanNSParentOf, getRecycledNS, move, elementFrom } from './Dom'
+import { SplashFinder, GUIDString, Reference } from '../types/Types'
+import { cleanSplashParentOf, getRecycledSplash, move, elementFrom } from './Dom'
 import { ServiceInterface } from './ServiceInterface'
 import { Splash } from './Splash'
 
 /**
  * # Service
- * A service class that handles Nanosplash instances.
+ * A service class that handles Splash instances.
  * It's a singleton class and its instance resides in the Window object and
- * serves the public API of the Nanosplash library.
+ * serves the public API of the Splash library.
  * @see Splash
- * @author Isak K. Hauge <isakhauge@icloud.com>
+ * @author FDVhuset AS <edb@fdvhuset.no>
  */
 export class Service implements ServiceInterface {
 	/**
 	 * # Window Accessor Key
-	 * Key to access NanosplashService instance in the Window object.
+	 * Key to access SplashService instance in the Window object.
 	 */
-	public static readonly WindowAccessorKey = 'ns'
+	public static readonly WindowAccessorKey = 'splash'
 
 	/**
 	 * # Instance
-	 * Singleton instance of NanosplashService.
+	 * Singleton instance of SplashService.
 	 * @private
 	 */
 	private static instance: Service
@@ -38,7 +38,7 @@ export class Service implements ServiceInterface {
 	/**
 	 * @inheritdoc
 	 */
-	public readonly nsStack: Splash[]
+	public readonly stack: Splash[]
 
 	/**
 	 * # Constructor
@@ -47,35 +47,35 @@ export class Service implements ServiceInterface {
 	 */
 	private constructor() {
 		this.version = version
-		this.nsStack = []
+		this.stack = []
 	}
 
 	/**
 	 * # Find Index
-	 * Find Nanosplash stack index by callback.
+	 * Find Splashck index by callback.
 	 * @param callback Callback function that returns a boolean.
-	 * @returns {number} Index of Nanosplash instance in the stack or -1.
+	 * @returns {number} Index of Splash instance in the stack or -1.
 	 * @private
 	 */
-	private findIndex(callback: NSFinder): number | -1 {
-		return this.nsStack.findIndex(callback)
+	private findIndex(callback: SplashFinder): number | -1 {
+		return this.stack.findIndex(callback)
 	}
 
 	/**
 	 * # Find
-	 * Find Nanosplash in the stack by callback.
+	 * Find Splash in the stack by callback.
 	 * @param callback Callback function that returns a boolean.
-	 * @returns {Splash | undefined} Nanosplash instance or undefined
+	 * @returns {Splash | undefined} Splashefined
 	 * @private
 	 */
-	private find(callback: NSFinder): Splash | undefined {
-		return this.nsStack.find(callback)
+	private find(callback: SplashFinder): Splash | undefined {
+		return this.stack.find(callback)
 	}
 
 	/**
 	 * # Get Instance
 	 * Singleton instance accessor
-	 * @returns {Service} NanosplashService instance
+	 * @returns {Service} Splash
 	 */
 	public static getInstance(): Service {
 		if (!Service.instance) {
@@ -86,8 +86,8 @@ export class Service implements ServiceInterface {
 
 	/**
 	 * # Assign To Window
-	 * Assign a NanosplashService instance to the Window object.
-	 * The NanosplashService instance can be accessed in the window object
+	 * Assign a SplashService instance to the Window object.
+	 * The SplashService instance can be accessed in the window object
 	 * using the key window accessor key.
 	 * @see WindowAccessorKey
 	 * @private
@@ -101,71 +101,71 @@ export class Service implements ServiceInterface {
 
 	/**
 	 * # Start
-	 * Initialize and attach a Nanosplash Service instance to the Window object.
+	 * Initialize and attach a Splash Service instance to the Window object.
 	 */
 	public static start(): void {
 		Service.assignToWindow()
 		window.addEventListener('load', () => {
-			const nss = window[Service.WindowAccessorKey]
-			const nssAssigned = nss instanceof Service
-			if (!nssAssigned) {
+			const ss = window[Service.WindowAccessorKey]
+			const ssAssigned = ss instanceof Service
+			if (!ssAssigned) {
 				Service.assignToWindow()
 			}
 		})
 	}
 
 	/**
-	 * # Create Nanosplash
-	 * Return new Nanosplash instance and push it to the stack.
+	 * # Create Splash
+	 * Return new Splash instance and push it to the stack.
 	 * @param text Text to display.
-	 * @returns {Splash} Nanosplash instance.
+	 * @returns {Splash} Splash instance.
 	 * @private
 	 */
 	private createNS(text?: string): Splash {
-		const ns = new Splash()
-		ns.setText(text || '')
-		this.nsStack.push(ns)
-		return ns
+		const s = new Splash()
+		s.setText(text || '')
+		this.stack.push(s)
+		return s
 	}
 
 	/**
 	 * # Clean And Remove
-	 * Remove Nanosplash from DOM and clean its parent.
-	 * @param ns Nanosplash instance.
-	 * @returns {GUIDString} Nanosplash ID.
+	 * Remove Splash from DOM and clean its parent.
+	 * @param s Splash instance.
+	 * @returns {GUIDString} Splash ID.
 	 * @private
 	 */
-	private cleanAndRemove(ns: Splash): GUIDString {
-		cleanNSParentOf(ns)
-		return ns.remove().getId()
+	private cleanAndRemove(s: Splash): GUIDString {
+		cleanSplashParentOf(s)
+		return s.remove().getId()
 	}
 
 	/**
 	 * # Stack Delete
-	 * Remove Nanosplash instance from the stack.
-	 * @param ns Nanosplash instance.
-	 * @returns {GUIDString | null} Nanosplash ID or null if it doesn't exist.
+	 * Remove Splash instance from the stack.
+	 * @param s Splash instance.
+	 * @returns {GUIDString | null} Splash ID or null if it doesn't exist.
 	 * @private
 	 */
-	private stackDelete(ns: Splash): GUIDString | null {
-		let index = this.findIndex((o: Splash) => o.getId() === ns.getId())
+	private stackDelete(s: Splash): GUIDString | null {
+		let index = this.findIndex((o: Splash) => o.getId() === s.getId())
 		if (index < 0) return null
-		this.nsStack.splice(index, 1)
-		return ns.getId()
+		this.stack.splice(index, 1)
+		return s.getId()
 	}
 
 	/**
 	 * # Delete NS
-	 * Remove Nanosplash instance from both the stack and the
+	 * Remove Splash instance from both the stack and the
 	 * @param callback Callback function.
-	 * @returns {GUIDString | null} Nanosplash ID or null if it doesn't exist.
+	 * @returns {GUIDString | null} Splash ID or null if it doesn't exist.
 	 * @private
 	 */
-	private deleteNS(callback: NSFinder): GUIDString | null {
-		const ns = this.find(callback)
-		if (ns) {
-			this.cleanAndRemove(ns)
-			return this.stackDelete(ns)
+	private deleteNS(callback: SplashFinder): GUIDString | null {
+		const s = this.find(callback)
+		if (s) {
+			this.cleanAndRemove(s)
+			return this.stackDelete(s)
 		}
 		return null
 	}
@@ -174,12 +174,12 @@ export class Service implements ServiceInterface {
 	 * @inheritdoc
 	 */
 	public show(text?: string): GUIDString {
-		let ns = getRecycledNS(document.body)
-		if (!ns) {
-			ns = this.createNS()
-			move(ns.getNSElement(), document.body)
+		let s = getRecycledSplash(document.body)
+		if (!s) {
+			s = this.createNS()
+			move(s.getNSElement(), document.body)
 		}
-		return ns.setText(text || '').getId()
+		return s.setText(text || '').getId()
 	}
 
 	/**
@@ -188,12 +188,12 @@ export class Service implements ServiceInterface {
 	public showInside(ref: Reference, text?: string): GUIDString | null {
 		const destinationNode: Element | null = elementFrom(ref)
 		if (destinationNode) {
-			let ns = getRecycledNS(destinationNode)
-			if (!ns) {
-				ns = this.createNS()
+			let s = getRecycledSplash(destinationNode)
+			if (!s) {
+				s = this.createNS()
 			}
-			move(ns.getNSElement(), <Element>destinationNode)
-			return ns.setText(text || '').getId()
+			move(s.getNSElement(), <Element>destinationNode)
+			return s.setText(text || '').getId()
 		}
 
 		return null
@@ -203,16 +203,16 @@ export class Service implements ServiceInterface {
 	 * @inheritdoc
 	 */
 	public hide(): GUIDString | null {
-		const ns = this.nsStack.pop()
-		return ns ? this.cleanAndRemove(ns) : null
+		const s = this.stack.pop()
+		return s ? this.cleanAndRemove(s) : null
 	}
 
 	/**
 	 * @inheritdoc
 	 */
 	public hideAll(): void {
-		this.nsStack.forEach(this.cleanAndRemove)
-		this.nsStack.splice(0, this.nsStack.length)
+		this.stack.forEach(this.cleanAndRemove)
+		this.stack.splice(0, this.stack.length)
 	}
 
 	/**

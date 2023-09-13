@@ -21,7 +21,7 @@ export default defineConfig({
 		outDir,
 		lib: {
 			entry,
-			name: 'Nanosplash',
+			name: 'Splash',
 			formats: [format] as LibraryFormats[],
 			fileName: 'ns',
 		},

@@ -6,25 +6,25 @@ import { Splash } from './Splash'
 export interface SplashInterface {
 	/**
 	 * # Get NS Content Element
-	 * Returns the content element of the Nanosplash.
+	 * Returns the content element of the Splash.
 	 */
 	getNSContentElement(): HTMLDivElement
 
 	/**
 	 * # Get NS Text Element
-	 * Returns the text element of the Nanosplash.
+	 * Returns the text element of the Splash.
 	 */
 	getNSTextElement(): HTMLDivElement
 
 	/**
 	 * # Get ID
-	 * Return Nanosplash instance GUID.
+	 * Return Splash instance GUID.
 	 */
 	getId(): GUIDString
 
 	/**
 	 * # Get NS Element
-	 * Return Nanosplash instance HTMLDivElement.
+	 * Return Splash instance HTMLDivElement.
 	 */
 	getNSElement(): HTMLDivElement
 

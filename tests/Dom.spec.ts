@@ -6,14 +6,14 @@ import {
 	createElement,
 	injectAsFirstChild,
 	prepareParentOf,
-	cleanNSParentOf,
+	cleanSplashParentOf,
 	showElement,
 	hideElement,
-	setNSHostClass,
+	setSplashHostClass,
 	move,
 	elementFrom,
-	elementIsNS,
-	getRecycledNS,
+	elementIsSplash,
+	getRecycledSplash,
 } from '../src/ts/core/Dom'
 import { Splash } from '../src/ts/core/Splash'
 import { Service } from '../src/ts/core/Service'
@@ -30,20 +30,20 @@ describe('DOMUtilities', () => {
 		globalThis.Element = dom.window.Element
 	})
 
-	it('Should be able to create a Nanosplash component', () => {
+	it('Should be able to create a Splash component', () => {
 		const getClass = (element: Element) => element.classList[0]
 		const element = createElement()
 		const contentElement = <Element>element.firstElementChild
 		const textElement = <Element>contentElement.firstElementChild
 		const spinnerElement = <Element>textElement.nextElementSibling
 
-		expect(getClass(element)).toBe('ns')
-		expect(getClass(contentElement)).toBe('nsc')
-		expect(getClass(textElement)).toBe('nst')
-		expect(getClass(spinnerElement)).toBe('nss')
+		expect(getClass(element)).toBe('s')
+		expect(getClass(contentElement)).toBe('sc')
+		expect(getClass(textElement)).toBe('st')
+		expect(getClass(spinnerElement)).toBe('ss')
 	})
 
-	it('Should be able to inject a Nanosplash component', () => {
+	it('Should be able to inject a Splash component', () => {
 		const elementA = createElement()
 		const elementB = createElement()
 		const destinationElement = document.createElement('div')
@@ -53,21 +53,21 @@ describe('DOMUtilities', () => {
 		expect(destinationElement.firstElementChild).toBe(elementB)
 	})
 
-	it('Should be able to prepare the parent of a Nanosplash component', () => {
-		const ns = new Splash()
+	it('Should be able to prepare the parent of a Splash component', () => {
+		const s = new Splash()
 		const parent = document.createElement('div')
-		parent.appendChild(ns.getNSElement())
-		prepareParentOf(ns)
-		expect(parent.classList.contains(Splash.NSHostClass)).toBe(true)
+		parent.appendChild(s.getNSElement())
+		prepareParentOf(s)
+		expect(parent.classList.contains(Splash.SplashHostClass)).toBe(true)
 	})
 
-	it('Should be able to clean the parent of a Nanosplash component', () => {
-		const ns = new Splash()
+	it('Should be able to clean the parent of a Splash component', () => {
+		const s = new Splash()
 		const parent = document.createElement('div')
-		parent.appendChild(ns.getNSElement())
-		parent.classList.add(Splash.NSClass)
-		cleanNSParentOf(ns)
-		expect(parent.classList.contains(Splash.NSHostClass)).toBe(false)
+		parent.appendChild(s.getNSElement())
+		parent.classList.add(Splash.SplashClass)
+		cleanSplashParentOf(s)
+		expect(parent.classList.contains(Splash.SplashHostClass)).toBe(false)
 	})
 
 	it('Should be able to convert an element reference to an element', () => {
@@ -82,19 +82,19 @@ describe('DOMUtilities', () => {
 		expect(elementFrom(element)).toBe(element)
 	})
 
-	it('Should be able to check if an element is a Nanosplash element', () => {
+	it('Should be able to check if an element is a Splash element', () => {
 		const elementA = new Splash().getNSElement()
 		const elementB = document.createElement('div')
-		expect(elementIsNS(elementA)).toBe(true)
-		expect(elementIsNS(elementB)).toBe(false)
+		expect(elementIsSplash(elementA)).toBe(true)
+		expect(elementIsSplash(elementB)).toBe(false)
 	})
 
-	it('Should be able to recycle a Nanosplash component', () => {
+	it('Should be able to recycle a Splash component', () => {
 		const destination = document.createElement('div')
 		document.body.appendChild(destination)
-		const nss = Service.getInstance()
-		const id = nss.showInside(destination, 'Hello World!')
-		const recycled = getRecycledNS(destination)
+		const ss = Service.getInstance()
+		const id = ss.showInside(destination, 'Hello World!')
+		const recycled = getRecycledSplash(destination)
 		expect(recycled?.getId()).toBe(id)
 	})
 
@@ -110,18 +110,18 @@ describe('DOMUtilities', () => {
 		expect(element.style.display).toBe('none')
 	})
 
-	it('Should be able to alter the class of a Nanosplash host', () => {
+	it('Should be able to alter the class of a Splash host', () => {
 		const div = document.createElement('div')
-		setNSHostClass(div, ClassListAction.Add)
-		expect(div.classList.contains(Splash.NSHostClass)).toBe(true)
-		setNSHostClass(div, ClassListAction.Remove)
-		expect(div.classList.contains(Splash.NSHostClass)).toBe(false)
+		setSplashHostClass(div, ClassListAction.Add)
+		expect(div.classList.contains(Splash.SplashHostClass)).toBe(true)
+		setSplashHostClass(div, ClassListAction.Remove)
+		expect(div.classList.contains(Splash.SplashHostClass)).toBe(false)
 	})
 
-	it('Should be able to move a Nanosplash component', () => {
-		const ns = new Splash()
+	it('Should be able to move a Splash component', () => {
+		const s = new Splash()
 		const destination = document.createElement('div')
-		move(ns.getNSElement(), destination)
-		expect(destination.firstElementChild).toBe(ns.getNSElement())
+		move(s.getNSElement(), destination)
+		expect(destination.firstElementChild).toBe(s.getNSElement())
 	})
 })

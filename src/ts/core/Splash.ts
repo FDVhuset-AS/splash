@@ -8,31 +8,31 @@ import { SplashInterface } from './SplashInterface'
  * # Splash
  * Small splash screen that can be used to indicate that a process
  * is running.
- * @author Isak K. Hauge <isakhauge@icloud.com>
+ * @author FDVhuset AS <edb@fdvhuset.no>
  */
 export class Splash implements SplashInterface {
 	/**
 	 * # CSS Class Name
-	 * The main CSS class name of the root element of a Nanosplash component.
+	 * The main CSS class name of the root element of a Splash component.
 	 */
-	public static readonly NSClass = 'ns'
+	public static readonly SplashClass = 's'
 
 	/**
 	 * # Host CSS Class Name
-	 * The CSS class name of the host element of a Nanosplash component.
-	 * The host element is the element that the Nanosplash is attached to.
+	 * The CSS class name of the host element of a Splash component.
+	 * The host element is the element that the Splash is attached to.
 	 */
-	public static readonly NSHostClass = 'nsh'
+	public static readonly SplashHostClass = 'sh'
 
 	/**
 	 * # ID
-	 * Each Nanosplash instance is given a unique GUID.
+	 * Each Splash instance is given a unique GUID.
 	 */
 	private readonly id: GUIDString
 
 	/**
 	 * # Element
-	 * The root element of the Nanosplash component.
+	 * The root element of the Splash component.
 	 */
 	private element?: HTMLDivElement
 
@@ -51,7 +51,7 @@ export class Splash implements SplashInterface {
 
 	/**
 	 * # Constructor
-	 * Creates a new Nanosplash instance.
+	 * Creates a new Splash instance.
 	 */
 	public constructor() {
 		this.element = createElement()

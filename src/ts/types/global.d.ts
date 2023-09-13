@@ -1,14 +1,14 @@
-import NS from '../core/Service'
+import Splash from '../core/Service'
 import { ServiceInterface } from '../core/ServiceInterface'
 
-export class Service extends NS.Service {}
+export class Service extends Splash.Service {}
 
 declare global {
-	export const ns: ServiceInterface
+	export const splash: ServiceInterface
 	export interface Window {
-		ns: ServiceInterface
+		splash: ServiceInterface
 	}
 	export interface window {
-		ns: ServiceInterface
+		splash: ServiceInterface
 	}
 }

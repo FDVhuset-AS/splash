@@ -432,8 +432,8 @@ export function injectAsFirstChild(
 &nbsp;
 /**
  * # Set NS Host Class
- * Add or remove the `nsHostClassName` class to the `element`.
- * @param element Element to which the `nsHostClassName` class will be added or removed.
+ * Add or remove the `sh` class to the `element`.
+ * @param element Element to which the `sh` class will be added or removed.
  * @param action Action to perform ('add' or 'remove').
  * @see https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
  * @see https://developer.mozilla.org/en-US/docs/Web/API/DOMTokenList/add
@@ -448,7 +448,7 @@ export function setNSHostClass(
 &nbsp;
 /**
  * # Prepare Parent Of
- * Add the `nsHostClassName` class to the parent of the `ns` element.
+ * Add the `sh` class to the parent of the `s` element.
  * @param ns Nanosplash instance.
  * @see https://developer.mozilla.org/en-US/docs/Web/API/Element/parentElement
  */
@@ -458,7 +458,7 @@ export function prepareParentOf(ns: Splash): void {
 &nbsp;
 /**
  * # Clean NS Parent Of
- * Remove the `nsHostClassName` class from the parent of the `ns` element.
+ * Remove the `sh` class from the parent of the `s` element.
  * @param ns Nanosplash instance.
  * @see https://developer.mozilla.org/en-US/docs/Web/API/Element/parentElement
  */
@@ -502,7 +502,7 @@ export function elementFrom(ref: Reference): Element | null {
 /**
  * # Element Is NS
  * Check if the element is a Nanosplash element.
- * This is determined by the presence of the `ns` class on the element.
+ * This is determined by the presence of the `s` class on the element.
  * @param element Element to check.
  * @see https://developer.mozilla.org/en-US/docs/Web/API/DOMTokenList/contains
  */

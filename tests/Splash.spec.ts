@@ -15,17 +15,17 @@ describe('Splash', () => {
 	})
 
 	it('Should be a valid Splash', () => {
-		const ns = new Splash()
-		const element = ns.getNSElement()
+		const s = new Splash()
+		const element = s.getNSElement()
 
 		expect(element).not.toBeUndefined()
-		expect(element.id).toBe(ns.getId())
-		expect(element.classList.contains(Splash.NSClass)).toBe(true)
+		expect(element.id).toBe(s.getId())
+		expect(element.classList.contains(Splash.SplashClass)).toBe(true)
 
-		const contentElement = ns.getNSContentElement()
+		const contentElement = s.getNSContentElement()
 		expect(contentElement).not.toBeUndefined()
 
-		const textElement = ns.getNSTextElement()
+		const textElement = s.getNSTextElement()
 		expect(textElement).not.toBeUndefined()
 
 		const spinnerElement = <HTMLElement>textElement.nextElementSibling
@@ -36,29 +36,29 @@ describe('Splash', () => {
 	})
 
 	it('Should be able to set text', () => {
-		const ns = new Splash()
+		const s = new Splash()
 		const text = 'Hello World!'
-		ns.setText(text)
-		expect(ns.getNSTextElement().innerText).toBe(text)
+		s.setText(text)
+		expect(s.getNSTextElement().innerText).toBe(text)
 	})
 
 	it('Should be able to hide text', () => {
-		const ns = new Splash()
-		ns.hideText()
-		expect(ns.getNSTextElement().style.display).toBe('none')
+		const s= new Splash()
+		s.hideText()
+		expect(s.getNSTextElement().style.display).toBe('none')
 	})
 
 	it('Should be able to show text', () => {
-		const ns = new Splash()
-		ns.setText('Hello World!')
-		ns.hideText()
-		ns.showText()
-		expect(ns.getNSTextElement().style.display).toBe('flex')
+		const s = new Splash()
+		s.setText('Hello World!')
+		s.hideText()
+		s.showText()
+		expect(s.getNSTextElement().style.display).toBe('flex')
 	})
 
 	it('Should be able to remove itself from DOM', () => {
-		const ns = new Splash()
-		ns.remove()
-		expect(ns.getNSElement()).toBeUndefined()
+		const s = new Splash()
+		s.remove()
+		expect(s.getNSElement()).toBeUndefined()
 	})
 })

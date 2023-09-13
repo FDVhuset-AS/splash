@@ -11,8 +11,8 @@
 	justify-content: center
 	align-items: center
 
-// Nanosplash host scoped varibles
-.nsh
+// Splash host scoped varibles
+.sh
 	--color: DarkSlateGray
 	--size: 20px
 	--relSize: calc(var(--size) * 0.9)
@@ -22,8 +22,8 @@
 	--zIdx: 999999999
 	--blur: blur(10px)
 
-// Nanosplash host
-.nsh
+// Splash host
+.sh
 	position: relative
 	z-index: var(--zIdx)
 	&::before
@@ -37,25 +37,25 @@
 		z-index: calc(var(--zIdx) + 1)
 		border-radius: inherit
 
-// When Nanosplash host is the document body
-body.nsh
+// When Splash host is the document body
+body.sh
 	height: 100vh
 
-// Nanosplash (main element)
-.ns
+// Splash (main element)
+.s
 	@extend %maximize
 	@extend %upper-left
 	@extend %flex-center-xy
 	position: absolute
 	z-index: calc(var(--zIdx) + 2)
 
-// Nanosplash container
-.nsc
+// Splash container
+.sc
 	@extend %flex-center-xy
 	filter: drop-shadow(0 0 0.1rem #{ rgba(LightGray, 0.5) })
 
-// Nanosplash text
-.nst
+// Splash text
+.st
 	color: var(--color)
 	font-size: var(--size)
 	font-family: var(--font)
@@ -63,8 +63,8 @@ body.nsh
 	margin-right: var(--relSize)
 	text-shadow: 0 0 0.06rem #{ rgba(DarkSlateGray, .25) }
 
-// Nanosplash spinner
-.nss
+// Splash spinner
+.ss
 	display: block
 	width: var(--relSize)
 	height: var(--relSize)

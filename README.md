@@ -1,4 +1,4 @@
-# Nanosplash
+# Splash
 
 ### The tiny loading screen for web artisans
 

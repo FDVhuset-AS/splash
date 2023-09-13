@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig(() => ({
-	base: 'nanosplash',
+	base: 'splash',
 	build: {
 		outDir: 'docs',
 		rollupOptions: {

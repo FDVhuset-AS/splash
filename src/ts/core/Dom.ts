@@ -6,19 +6,19 @@ import { Splash } from './Splash'
 
 /**
  * # DOM Utilities
- * A collection of functions that are used by the Nanosplash classes.
+ * A collection of functions that are used by the Splash classes.
  * @see Splash
  * @see Service
- * @author Isak K. Hauge <isakhauge@icloud.com>
+ * @author FDVhuset AS <edb@fdvhuset.no>
  */
 
 /**
  * # Create Element
- * Return the main Nanosplash element.
+ * Return the main Splash element.
  */
 export function createElement(): HTMLDivElement {
 	return new DOMParser().parseFromString(
-		'<div class=ns><div class=nsc><div class=nst></div><div class=nss><svg viewBox="0 0 50 50"><circle class=path cx=25 cy=25 r=20 fill=none></circle></svg></div></div></div>',
+		'<div class=s><div class=sc><div class=st></div><div class=ss><svg viewBox="0 0 50 50"><circle class=path cx=25 cy=25 r=20 fill=none></circle></svg></div></div></div>',
 		'text/html'
 	).body.firstChild as HTMLDivElement
 }
@@ -47,38 +47,38 @@ export function injectAsFirstChild(
 
 /**
  * # Set NS Host Class
- * Add or remove the `nsHostClassName` class to the `element`.
- * @param element Element to which the `nsHostClassName` class will be added or removed.
+ * Add or remove the `sh` class to the `element`.
+ * @param element Element to which the `sh` class will be added or removed.
  * @param action Action to perform ('add' or 'remove').
  * @see https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
  * @see https://developer.mozilla.org/en-US/docs/Web/API/DOMTokenList/add
  * @see https://developer.mozilla.org/en-US/docs/Web/API/DOMTokenList/remove
  */
-export function setNSHostClass(
+export function setSplashHostClass(
 	element: Element | null,
 	action: ClassListAction
 ): void {
-	element?.classList[action](Splash.NSHostClass)
+	element?.classList[action](Splash.SplashHostClass)
 }
 
 /**
  * # Prepare Parent Of
- * Add the `nsHostClassName` class to the parent of the `ns` element.
- * @param ns Nanosplash instance.
+ * Add the `sh` class to the parent of the Splash element.
+ * @param ns Splash instance.
  * @see https://developer.mozilla.org/en-US/docs/Web/API/Element/parentElement
  */
 export function prepareParentOf(ns: Splash): void {
-	setNSHostClass(ns.getNSElement().parentElement, ClassListAction.Add)
+	setSplashHostClass(ns.getNSElement().parentElement, ClassListAction.Add)
 }
 
 /**
- * # Clean NS Parent Of
- * Remove the `nsHostClassName` class from the parent of the `ns` element.
- * @param ns Nanosplash instance.
+ * # Clean Splash Parent Of
+ * Remove the `sh` class from the parent of the Splash element.
+ * @param s Splash instance.
  * @see https://developer.mozilla.org/en-US/docs/Web/API/Element/parentElement
  */
-export function cleanNSParentOf(ns: Splash): void {
-	setNSHostClass(ns.getNSElement().parentElement, ClassListAction.Remove)
+export function cleanSplashParentOf(s: Splash): void {
+	setSplashHostClass(s.getNSElement().parentElement, ClassListAction.Remove)
 }
 
 /**
@@ -116,13 +116,13 @@ export function elementFrom(ref: Reference): Element | null {
 
 /**
  * # Element Is NS
- * Check if the element is a Nanosplash element.
- * This is determined by the presence of the `ns` class on the element.
+ * Check if the element is a Splash element.
+ * This is determined by the presence of the `s` class on the element.
  * @param element Element to check.
  * @see https://developer.mozilla.org/en-US/docs/Web/API/DOMTokenList/contains
  */
-export function elementIsNS(element: Element): boolean {
-	return element?.classList?.contains(Splash.NSClass) ?? false
+export function elementIsSplash(element: Element): boolean {
+	return element?.classList?.contains(Splash.SplashClass) ?? false
 }
 
 /**
@@ -133,27 +133,27 @@ export function elementIsNS(element: Element): boolean {
  */
 export function move(element: Element, targetElement: Element): void {
 	// Clean the current NS host element.
-	setNSHostClass(element.parentElement, ClassListAction.Remove)
+	setSplashHostClass(element.parentElement, ClassListAction.Remove)
 	// Assign new NS host element.
-	setNSHostClass(targetElement, ClassListAction.Add)
+	setSplashHostClass(targetElement, ClassListAction.Add)
 	injectAsFirstChild(element, targetElement)
 }
 
 /**
  * # Get Recycled NS
- * Return the Nanosplash instance inside the target element if it exists.
- * @param targetElement Element wherein the Nanosplash instance is to reside.
- * @returns { Nanosplash | null } Nanosplash instance or null.
+ * Return the Splash instance inside the target element if it exists.
+ * @param targetElement Element wherein the Splash instance is to reside.
+ * @returns { Splash | null } Splash instance or null.
  * @see https://developer.mozilla.org/en-US/docs/Web/API/Document/firstElementChild
  */
-export function getRecycledNS(targetElement: Element): Splash | null {
+export function getRecycledSplash(targetElement: Element): Splash | null {
 	const firstChild = targetElement.firstElementChild
 	const hasChild = firstChild !== null
-	const targetAlreadyHasNS = hasChild && elementIsNS(firstChild)
+	const targetAlreadyHasNS = hasChild && elementIsSplash(firstChild)
 	if (targetAlreadyHasNS) {
 		const id: GUIDString = firstChild.id
 		const nss = Service.getInstance()
-		return nss.nsStack.find((ns: Splash) => ns.getId() === id) ?? null
+		return nss.stack.find((s: Splash) => s.getId() === id) ?? null
 	}
 
 	return null

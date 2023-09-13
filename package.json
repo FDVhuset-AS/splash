@@ -5,16 +5,14 @@
   "version": "3.0.1",
   "type": "module",
   "author": {
-    "name": "Isak K. Hauge",
-    "email": "isakhauge@icloud.com",
-    "url": "https://no.linkedin.com/in/isakhauge"
+    "name": "FDVhuset AS",
+    "email": "edb@fdvhuset.no",
+    "url": "https://fdvhuset.no"
   },
   "keywords": [
     "loading",
     "loader",
     "screen",
-    "splash",
-    "nano",
     "splash",
     "small",
     "tiny",
@@ -26,16 +24,15 @@
     "cdn",
     "vite"
   ],
-  "homepage": "https://isakhauge.github.io/nanosplash",
   "repository": {
     "type": "git",
-    "url": "https://github.com/isakhauge/nanosplash.git"
+    "url": "https://github.com/FDVhuset-AS/splash.git"
   },
   "license": "MIT",
-  "main": "./dist/latest/es/ns.js",
-  "module": "./dist/latest/es/ns.js",
+  "main": "./dist/latest/es/splash.js",
+  "module": "./dist/latest/es/splash.js",
   "source": "./src/main.ts",
-  "unpkg": "./dist/latest/iife/ns.iife.js",
+  "unpkg": "./dist/latest/iife/splash.iife.js",
   "style": "./dist/latest/es/style.css",
   "exports": {
     ".": {
@@ -44,12 +41,12 @@
         "default": "./src/ts/types/global.d.ts"
       },
       "browser": {
-        "require": "./dist/latest/cjs/ns.cjs",
-        "default": "./dist/latest/es/ns.js"
+        "require": "./dist/latest/cjs/splash.cjs",
+        "default": "./dist/latest/es/splash.js"
       },
       "default": {
-        "require": "./dist/latest/cjs/ns.cjs",
-        "default": "./dist/latest/es/ns.js"
+        "require": "./dist/latest/cjs/splash.cjs",
+        "default": "./dist/latest/es/splash.js"
       }
     }
   },

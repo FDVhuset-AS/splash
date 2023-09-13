@@ -23,7 +23,7 @@ export default defineConfig({
 			entry,
 			name: 'Splash',
 			formats: [format] as LibraryFormats[],
-			fileName: 'ns',
+			fileName: 'splash',
 		},
 		cssCodeSplit: format === 'iife',
 	},
